@@ -1,0 +1,22 @@
+# docker-compose up
+version: '3.7'
+services:
+  db_pg_auth:
+    image: postgres:14.5
+    container_name: db_pg_auth
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./data/postgresql:/var/lib/postgresql/data/pgdata"
+      #- F:/repositories/workspaces/prediction_num/data/postgres:/var/lib/postgresql/data
+      # do additional initialization scripts
+      #- "../configs/database:/docker-entrypoint-initdb.d"
+      #- F:/repositories/workspaces/prediction_num/configs/database:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
+      TZ: Asia/Tokyo
+      PGTZ: Asia/Tokyo
+      # PGDATA: /temp
+    restart: 'no'

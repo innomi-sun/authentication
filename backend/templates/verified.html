@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Noto+Sans+SC:wght@300&display=swap" rel="stylesheet">    
+    <style>     
+      body {
+        font-family: "Roboto", 'Noto Sans SC', arial, sans-serif;
+      }
+      /* Extra small devices (phones, 600px and down) */
+      [cloak]{
+        display: none;
+      }
+      @media only screen and (max-width: 900px) {
+        .success-container {
+          font-size: 16px;
+          text-align: center;
+        }
+      }   
+      @media only screen and (min-width: 900px) {
+        .success-container {
+          max-width: 50%;
+          font-size: 20px;
+          text-align: center;
+        }
+      }
+    </style>    
+  </head>
+  <body>
+    {% raw %}
+    <div id="q-app" v-cloak style="min-height: 100vh;">
+        <q-layout view="hHh lpR fFf">
+            <q-page-container>
+                <q-page class=" q-pa-xl">
+                    <div class="success-container shadow-2 rounded-borders q-mt-xl q-mx-auto q-pa-md">
+                        <q-icon name="fa-regular fa-circle-check" color="positive" class="q-my-lg" size="120px"></q-icon>
+                        <div>
+                          <div class="text-no-wrap">{{ $t("message.TEXT_VERIFIED") }}</div>
+                          <div class="text-no-wrap">{{ $t("message.TEXT_TO_YOU_PAGE") }}</div>
+                        </div>
+                        <q-btn @click="toResource" class="q-px-xl q-py-xs q-my-lg text-no-wrap" 
+                          color="primary" :label="$t('message.BTN_TO_MY_PAGE')"></q-btn>
+                    </div>
+                </q-page>
+            </q-page-container>
+
+            <q-footer elevated class="bg-grey-8 text-white">
+                <q-toolbar>
+                    <q-toolbar-title class="flex justify-center text-subtitle2">
+                        <div>Copyright(c)2022 Outlier Co.,Ltd. All Rights Reserved.</div>
+                    </q-toolbar-title>
+                </q-toolbar>
+            </q-footer>
+        </q-layout>
+    </div>
+    {% endraw %}
+    <!-- Add the following at the end of your body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/quasar.umd.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/icon-set/fontawesome-v6.umd.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-i18n@9.2.2/dist/vue-i18n.global.min.js"></script>
+    <script>
+      const messages = {
+        en: {
+          message: {
+            TEXT_VERIFIED: 'Your email has been verifyed.',
+            TEXT_TO_YOU_PAGE: 'Click the botton blow to continue.',
+            BTN_TO_MY_PAGE: 'Home'
+          }
+        },
+        zh: {
+          message: {
+            TEXT_VERIFIED: '邮件已被成功验证',
+            TEXT_TO_YOU_PAGE: '单击下面的按钮以继续',
+            BTN_TO_MY_PAGE: '进入首页'
+          }
+        },        
+        ja: {
+          message: {
+            TEXT_VERIFIED: 'メールアドレスは認証されました。',
+            TEXT_TO_YOU_PAGE: 'ボタンを押下して進んでください。',
+            BTN_TO_MY_PAGE: 'ホームへ'
+          }
+        }
+      }
+      const i18n = VueI18n.createI18n({
+        locale: Quasar.lang.getLocale(),
+        fallbackLocale: 'en',
+        messages
+      })
+      const app = Vue.createApp({
+        setup () {
+          let resourceUrl = '{{resource_url}}'
+          function toResource() {
+            location.href = 'resourceUrl'
+          }
+          return {
+            toResource
+          }
+        }
+      })
+      app.use(i18n)
+      app.use(Quasar)
+      app.mount('#q-app')
+    </script>
+  </body>
+</html>

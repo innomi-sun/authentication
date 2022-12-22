@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Noto+Sans+SC:wght@300&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: "Roboto", 'Noto Sans SC', arial, sans-serif;
+      }
+      .success-container {
+          min-width: 600px;
+          min-height: 260px;
+          text-align: center;
+      }
+    </style>    
+  </head>
+  <body>
+    {% raw %}
+    <!-- example of injection point where you write your app template -->
+    <div id="q-app"  style="min-height: 100vh;">
+        <q-layout view="hHh lpR fFf">
+            <q-page-container>
+                <q-page padding class="flex justify-center items-start q-pt-xl q-gutter-lg">
+                  <div class="success-container shadow-2 rounded-borders q-mt-xl q-pa-xl q-gutter-lg">
+                      <q-icon name="fa-regular fa-clock" color="warning" size="120px"></q-icon>
+                      <div>
+                        <div class="text-h6">{{ $t("message.TEXT_VERIFY_CODE_TIMEOUT") }}</div>
+                        <div class="text-h6">{{ $t("message.TEXT_SEND_CODE_AGAIN") }}</div>
+                      </div>
+                      <q-btn href="/" class="q-px-xl q-py-xs text-h6 q-mb-xl" color="primary" :label="$t('message.BTN_BACK')"></q-btn>
+                  </div>
+                </q-page>
+            </q-page-container>
+
+            <q-footer elevated class="bg-grey-8 text-white">
+                <q-toolbar>
+                    <q-toolbar-title class="flex justify-center text-subtitle2">
+                        <div>Copyright(c)2022 Outlier Co.,Ltd. All Rights Reserved.</div>
+                    </q-toolbar-title>
+                </q-toolbar>
+            </q-footer>
+        </q-layout>
+    </div>
+    {% endraw %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/quasar.umd.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/icon-set/fontawesome-v6.umd.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-i18n@9.2.2/dist/vue-i18n.global.min.js"></script>
+    <script>
+      const messages = {
+        en: {
+          message: {
+            TEXT_VERIFY_CODE_TIMEOUT: 'Verification code timed out.',
+            TEXT_SEND_CODE_AGAIN: 'Back to send code again.',
+            BTN_BACK: 'Back'
+          }
+        },
+        zh: {
+          message: {
+            TEXT_VERIFY_CODE_TIMEOUT: '验证码已超时',
+            TEXT_SEND_CODE_AGAIN: '请返回重新发送验证码',
+            BTN_BACK: '返回'
+          }
+        },        
+        ja: {
+          message: {
+            TEXT_VERIFY_CODE_TIMEOUT: '認証コードがタイムアウトしました。',
+            TEXT_SEND_CODE_AGAIN: '戻って認証コードをもう一度送信してください。',
+            BTN_BACK: '戻る'
+          }
+        }
+      }
+      const i18n = VueI18n.createI18n({
+        locale: Quasar.lang.getLocale(),
+        fallbackLocale: 'en',
+        messages
+      })
+      const app = Vue.createApp()
+      app.use(Quasar)
+      app.use(i18n)
+      app.mount('#q-app')
+    </script>
+  </body>
+</html>

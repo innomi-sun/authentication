@@ -1,0 +1,14 @@
+.vscode
+.history
+__pycache__/
+
+# Flask stuff:
+backend/instance/
+.webassets-cache
+
+notebooks
+data
+backend/configs/app.yaml
+backend/configs/app_dev.yaml
+backend/configs/nginx/password
+backend/configs/secret

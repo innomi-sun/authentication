@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form action="/auth/verify" method="post" name="redirect_verify">
+        <input type="hidden" name="resource" value="{{ resource }}">
+        <input type="hidden" name="secret_code" value="{{ secret_code }}">
+    </form>
+</body>
+<script lang="javascript">
+    document.redirect_verify.submit();
+</script>
+</html>

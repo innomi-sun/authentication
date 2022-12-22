@@ -1,0 +1,11 @@
+Thank you for joining %service_name%.
+
+To get you started, please click the secure link below to verify your identity.
+ %link%
+
+Or enter the verification code on the page.
+ %verify_code%
+
+If you didn't submit your email address to join our subscriber list, please ignore this message.
+
+The %service_name% support team
