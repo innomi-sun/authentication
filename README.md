@@ -1,6 +1,6 @@
 # ユーザー認証モジュール
 ### 技術スタック
-Python、Flask、PostgreSQL
+Python、Flask、PostgreSQL、Docker
 
 Javascript、HTML/CSS、Vue.js、Quasar
 
